@@ -39,7 +39,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("PV-Ertrags-Simulator Baden-Wuerttemberg (10 kWp bis 50 MWp)")
+st.title("PV-Ertrags-Simulator Baden-Wuerttemberg")
 
 st.markdown(
     """
@@ -47,7 +47,8 @@ st.markdown(
     fuer PV-Anlagen in Konstanz und weiteren Staedten in Baden-Wuerttemberg.
 
     Die Berechnung ist bewusst vereinfachend und eignet sich fuer Grobabschaetzungen
-    und erste Business-Case-Entwuerfe, nicht als Ersatz fuer detaillierte Ertragsgutachten.
+    und erste Business-Case-Entwuerfe, nicht als Ersatz fuer detaillierte Ertragsgutachten. 
+    by Wulfftechnologies 2025
     """
 )
 
