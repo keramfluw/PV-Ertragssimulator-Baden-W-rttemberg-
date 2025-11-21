@@ -1,18 +1,21 @@
 
-# PV-Ertrags-Simulator Baden-Wuerttemberg (Version mit besserer Darstellung)
+# PV-Ertrags-Simulator Baden-Wuerttemberg (Version 3)
 
-Dieses Projekt enthaelt eine Streamlit-App, mit der Sie fuer
-PV-Anlagen zwischen 10 kWp und 50 MWp in Konstanz und weiteren
-Staedten in Baden-Wuerttemberg Jahresertraege, Eigenverbrauch,
-Ueberschuss sowie Speicherwirkung in drei Szenarien abschaetzen koennen.
+Diese Version enthaelt folgende Anpassungen:
 
-Diese Version bietet:
-- Allgemeine Schrift in Times New Roman mit groesserer Schriftgroesse,
-- Tabelle mit Tausendertrennung per Punkt fuer kWp- und kWh-Werte,
-- Prozente mit einer Nachkommastelle,
-- Balkendiagramm mit direkten Zahlenlabels auf den Balken.
+- Dachneigung als Auswahl:
+  - Flachdach (aufgestaendert 15 Grad)
+  - Typisches Hausdach (30 Grad)
+  - Pultdach mit Unterauswahl 20 / 30 / 40 Grad
+- Ausrichtungsauswahl:
+  - Sued mit einstellbarem Orientierungsgrad (60 bis 100 Prozent)
+  - Ost/West mit pauschalem Faktor von 95 % gegenueber optimal Sued
+- Nur ein "realistisches" Szenario (kein konservativ/optimistisch mehr).
+- Alle Werte werden in einer Tabelle mit Tausenderpunkten und Prozentformat angezeigt.
+- Balkendiagramm mit Zahlenlabels fuer Jahreserzeugung, Eigenverbrauch (mit Speicher)
+  und Ueberschuss (mit Speicher).
 
-Installationsschritte:
+Installation:
 
 1. Python 3.10+ installieren.
 2. Projekt entpacken und in das Verzeichnis wechseln.
