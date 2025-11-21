@@ -21,7 +21,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("PV-Ertrags-Simulator Baden-Wuerttemberg (10 kWp bis 50 MWp)")
+st.title("PV-Ertrags-Simulator Baden-Wuerttemberg (10 kWp bis 50 MWp) by wulffTechnologies GmbH")
 
 st.markdown(
     """
