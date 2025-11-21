@@ -35,7 +35,8 @@ st.markdown(
     
     Die Berechnung ist bewusst vereinfachend und eignet sich fuer Grobabschaetzungen,
     Szenarien und erste Business-Case-Entwuerfe, nicht als Ersatz fuer detaillierte
-    Ertragsgutachten. copyright Wulfftechnologies e.K. 2025
+    Ertragsgutachten.
+    copyright Wulfftechnologies e.K. 2025
     """
 )
 
