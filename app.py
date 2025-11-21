@@ -2,26 +2,31 @@
 import streamlit as st
 import pandas as pd
 import math
+import altair as alt
 
 st.set_page_config(
     page_title="PV-Ertrags-Simulator Baden-Wuerttemberg",
     layout="wide"
 )
 
-# Global font styling (Times New Roman, Groesse ca. 12px)
+# Global font styling (Times New Roman, etwas groesser fuer bessere Lesbarkeit)
 st.markdown(
     '''
     <style>
     html, body, [class*="css"]  {
         font-family: "Times New Roman", serif;
-        font-size: 12px;
+        font-size: 15px;
+    }
+    table, th, td {
+        font-family: "Times New Roman", serif;
+        font-size: 15px;
     }
     </style>
     ''',
     unsafe_allow_html=True
 )
 
-st.title("PV-Ertrags-Simulator Baden-Wuerttemberg (10 kWp bis 50 MWp) by wulffTechnologies GmbH")
+st.title("PV-Ertrags-Simulator Baden-Wuerttemberg (10 kWp bis 50 MWp)")
 
 st.markdown(
     """
@@ -249,7 +254,32 @@ for scenario_name, data in results.items():
     results_table.append(row)
 
 results_df = pd.DataFrame(results_table)
-st.dataframe(results_df, use_container_width=True)
+
+# Kopie fuer Darstellung mit Tausenderpunkten
+display_df = results_df.copy()
+
+thousand_cols = [
+    "Anlagengroesse (kWp)",
+    "Jahreserzeugung (kWh/a)",
+    "Eigenverbrauch ohne Speicher (kWh/a)",
+    "Ueberschuss ohne Speicher (kWh/a)",
+    "Zusaetzliche Nutzung durch Speicher (kWh/a)",
+    "Eigenverbrauch mit Speicher (kWh/a)",
+    "Ueberschuss mit Speicher (kWh/a)",
+]
+
+for col in thousand_cols:
+    display_df[col] = display_df[col].apply(lambda x: f"{x:,.0f}".replace(",", "."))
+
+percent_cols = [
+    "Autarkie ohne Speicher (Prozent)",
+    "Autarkie mit Speicher (Prozent)",
+]
+
+for col in percent_cols:
+    display_df[col] = display_df[col].apply(lambda x: f"{x:.1f}".replace(".", ","))
+
+st.dataframe(display_df, use_container_width=True)
 
 st.subheader("Visualisierung: Erzeugung, Eigenverbrauch und Ueberschuss")
 
@@ -263,9 +293,23 @@ metric_option = st.selectbox(
     ],
 )
 
-chart_df = results_df[["Szenario", metric_option]].set_index("Szenario")
+chart_df = results_df[["Szenario", metric_option]].rename(columns={metric_option: "Wert"})
 
-st.bar_chart(chart_df)
+# Balkendiagramm mit Zahlenlabels
+bar = alt.Chart(chart_df).mark_bar().encode(
+    x=alt.X("Szenario:N", sort=["Konservativ", "Realistisch", "Optimistisch"]),
+    y=alt.Y("Wert:Q")
+)
+
+text = bar.mark_text(
+    align="center",
+    baseline="bottom",
+    dy=-5  # etwas oberhalb der Balken
+).encode(
+    text=alt.Text("Wert:Q", format=",.0f")
+)
+
+st.altair_chart(bar + text, use_container_width=True)
 
 st.markdown(
     "Hinweis: Die Speicherwirkung wird stark vereinfacht modelliert. "
