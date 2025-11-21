@@ -10,6 +10,7 @@ st.set_page_config(
 )
 
 # Global font styling (Times New Roman, etwas groesser fuer bessere Lesbarkeit)
+# Zusaetzlich: Media Queries fuer bessere mobile Darstellung
 st.markdown(
     '''
     <style>
@@ -20,6 +21,18 @@ st.markdown(
     table, th, td {
         font-family: "Times New Roman", serif;
         font-size: 15px;
+    }
+    @media (max-width: 768px) {
+        html, body, [class*="css"]  {
+            font-size: 18px;
+        }
+        .block-container {
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+        }
+        table, th, td {
+            font-size: 16px;
+        }
     }
     </style>
     ''',
@@ -37,6 +50,16 @@ st.markdown(
     und erste Business-Case-Entwuerfe, nicht als Ersatz fuer detaillierte Ertragsgutachten.
     """
 )
+
+with st.expander("Hinweise fuer mobile Nutzung (Smartphone / Tablet)"):
+    st.markdown(
+        """
+        - Am besten im Hochformat starten, bei Bedarf ins Querformat wechseln.
+        - Die Seitenleiste (Eingaben) kann ueber den kleinen Pfeil am linken Rand
+          ein- und ausgeblendet werden, um mehr Platz fuer Tabelle und Diagramm zu haben.
+        - Tabellen und Diagramme sind fuer kleinere Bildschirme zusaetzlich vergroessert.
+        """
+    )
 
 CITY_DATA = {
     "Konstanz": 1000,
@@ -289,6 +312,9 @@ chart_df = pd.DataFrame(
 bar = alt.Chart(chart_df).mark_bar().encode(
     x=alt.X("Kategorie:N", sort=None),
     y=alt.Y("Wert:Q")
+).properties(
+    width="container",
+    height=400
 )
 
 text = bar.mark_text(
