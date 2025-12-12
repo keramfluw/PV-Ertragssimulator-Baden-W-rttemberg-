@@ -5,7 +5,7 @@ import math
 import altair as alt
 
 st.set_page_config(
-    page_title="PV-Ertrags-Simulator Baden-Wuerttemberg",
+    page_title="baetz energy PV-Ertrags-Simulator Baden-Wuerttemberg",
     layout="wide"
 )
 
