@@ -39,7 +39,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("PV-Ertrags-Simulator Baden-Wuerttemberg")
+st.title("baetz energy PV-Ertrags-Simulator Baden-Wuerttemberg")
 
 st.markdown(
     """
